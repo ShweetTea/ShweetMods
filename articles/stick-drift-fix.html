@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Controller's Drifting Apart (Literally) — Here's How to Fix It | ShweetMods</title>
+<meta name="description" content="A complete guide to diagnosing and fixing stick drift, without buying a new controller. Free fixes first, replacement parts last.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14161A;
+    --panel: #1E2128;
+    --panel-raised: #24272F;
+    --line: #32363F;
+    --amber: #FF8A3D;
+    --amber-dim: #B8602A;
+    --steel: #6E9FFF;
+    --text: #ECE9E2;
+    --text-dim: #8A8F98;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--steel); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 0 28px; }
+
+  header {
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    background: rgba(20, 22, 26, 0.92);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo .dot {
+    width: 8px; height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--amber);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .nav-links a { color: var(--text-dim); }
+  .nav-links a:hover { color: var(--amber); text-decoration: none; }
+
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  .article-header {
+    padding: 64px 0 40px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .breadcrumb {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .breadcrumb a { color: var(--text-dim); }
+  .breadcrumb a:hover { color: var(--amber); }
+
+  .article-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: rgba(255, 138, 61, 0.1);
+    border: 1px solid var(--amber-dim);
+    padding: 5px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    max-width: 56ch;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  article {
+    padding: 48px 0 80px;
+  }
+
+  article p {
+    margin-bottom: 22px;
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+
+  article h2 {
+    font-family: var(--mono);
+    font-size: 1.4rem;
+    margin: 44px 0 18px;
+    padding-top: 4px;
+  }
+
+  article ul {
+    margin: 0 0 22px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  article li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  article li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-family: var(--mono);
+  }
+
+  .lede {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+  }
+
+  .fix-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--amber-dim);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+
+  .fix-card .fix-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 10px;
+  }
+
+  .fix-card h2 { margin: 0 0 12px 0; font-size: 1.25rem; }
+  .fix-card p:last-child { margin-bottom: 0; }
+
+  .affiliate-box {
+    background: var(--panel-raised);
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+
+  .affiliate-box a { color: var(--steel); }
+
+  .pull-line {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--amber);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 24px 0;
+    margin: 36px 0;
+    line-height: 1.5;
+  }
+
+  .disclosure {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-row p, .footer-links {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--text-dim); }
+  .footer-links a:hover { color: var(--amber); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="../index.html" class="logo"><span class="dot"></span>SHWEETMODS</a>
+      <div class="nav-links">
+        <a href="../index.html#repairs">Repairs</a>
+        <a href="../index.html#mods">Mods</a>
+        <a href="../index.html#buying-guides">Buying Guides</a>
+        <a href="../index.html#about">About</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="article-header">
+  <div class="article-wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#repairs">Repairs</a> / Stick Drift</div>
+    <span class="article-tag">Repairs</span>
+    <h1>Your Controller's Drifting Apart (Literally) — Here's How to Fix It</h1>
+    <p class="subtitle">A complete guide to diagnosing and fixing stick drift, without buying a new controller.</p>
+    <div class="meta-row">
+      <span>7 MIN READ</span>
+      <span>UPDATED JUNE 2026</span>
+    </div>
+  </div>
+</div>
+
+<article>
+  <div class="article-wrap">
+
+    <p class="lede">You're lining up a shot. You're not touching the stick. And somehow your character is slowly spinning in a circle like it's possessed. Welcome to stick drift — the single most universal controller problem in gaming, and also one of the most misunderstood.</p>
+
+    <p>Most people's first instinct is to assume the controller is dead and buy a new one. That's usually the most expensive way to solve a problem that often costs under $10 to fix.</p>
+
+    <h2>What Stick Drift Actually Is</h2>
+    <p>Stick drift happens when your controller registers stick movement even when you're not touching it. It's not a software glitch (most of the time) — it's a hardware issue. Inside every analog stick is a small sensor mechanism that tracks position. Over time, through normal use, that mechanism wears down, accumulates dust, or loses calibration, and starts sending phantom signals.</p>
+
+    <p>The two most common causes:</p>
+    <ul>
+      <li><strong>Dust and debris buildup</strong> around the sensor, which throws off readings</li>
+      <li><strong>Physical wear</strong> on the potentiometer or sensor module itself, especially with repetitive motion (think shooter games, where you're constantly micro-adjusting aim)</li>
+    </ul>
+
+    <div class="pull-line">Start with the free fix. Work your way down. Most controllers never need to be replaced.</div>
+
+    <div class="fix-card">
+      <div class="fix-label">Fix 01 — Free</div>
+      <h2>Recalibrate First</h2>
+      <p>Before spending a dime, try recalibrating your controller through your console or PC's settings. This won't fix worn-out hardware, but it solves a surprising number of "drift" cases that are actually just calibration drift, not physical damage.</p>
+    </div>
+
+    <div class="fix-card">
+      <div class="fix-label">Fix 02 — ~$5</div>
+      <h2>Clean the Stick Mechanism</h2>
+      <p>If recalibration doesn't work, the next step is cleaning the stick mechanism. A can of compressed air and some isopropyl alcohol can dislodge the dust causing false readings. This requires opening the controller slightly, so it's a bit more involved, but it's still cheap and often solves the problem entirely.</p>
+      <div class="affiliate-box">🛠 Recommended cleaning kit goes here once affiliate program is approved.</div>
+    </div>
+
+    <div class="fix-card">
+      <div class="fix-label">Fix 03 — $10–20</div>
+      <h2>Replace the Stick Module</h2>
+      <p>If cleaning doesn't help, the sensor itself is likely worn out. Replacement stick modules are inexpensive and widely available for most major controllers. This is a slightly more technical fix (you'll need a small screwdriver kit and some patience), but it's still dramatically cheaper than buying a new controller, and there are plenty of guided tutorials to walk you through it model by model.</p>
+      <div class="affiliate-box">🛠 Replacement module + screwdriver kit links go here once affiliate program is approved.</div>
+    </div>
+
+    <div class="fix-card">
+      <div class="fix-label">Fix 04 — When to Replace</div>
+      <h2>Just Replace the Controller</h2>
+      <p>If your controller is old, has been dropped repeatedly, or has multiple hardware issues beyond just the sticks, sometimes replacement really is the right call — especially if you're due for an upgrade anyway (Hall effect sticks, for example, are a newer technology designed to resist drift entirely, which we'll cover in a separate guide).</p>
+    </div>
+
+    <h2>The Bottom Line</h2>
+    <p>Stick drift feels like a death sentence for your controller, but in the vast majority of cases, it's a fixable, cheap problem — not a reason to immediately spend $60–80 on a replacement. Start with the free fix, work your way down the list, and you'll likely save yourself the cost of a whole new controller.</p>
+
+    <div class="disclosure">This article may contain affiliate links. If you buy something through one, we may earn a small commission at no extra cost to you. We only recommend products we'd actually use ourselves.</div>
+
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <p>&copy; 2026 ShweetMods. Built by a controller enthusiast, not a corporation.</p>
+      <div class="footer-links">
+        <a href="../index.html#about">About</a>
+        <a href="#">Affiliate Disclosure</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
