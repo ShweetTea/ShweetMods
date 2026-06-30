@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShweetMods — Controller Repair, Mods &amp; Gear, Explained Properly</title>
+<meta name="description" content="Honest, hands-on guides to fixing, modding, and buying gaming controllers. No fluff, no upsells — just what actually works.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14161A;
+    --panel: #1E2128;
+    --panel-raised: #24272F;
+    --line: #32363F;
+    --amber: #FF8A3D;
+    --amber-dim: #B8602A;
+    --steel: #6E9FFF;
+    --text: #ECE9E2;
+    --text-dim: #8A8F98;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header {
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    background: rgba(20, 22, 26, 0.92);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px var(--amber);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .nav-links a:hover { color: var(--amber); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 88px 0 96px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; padding: 56px 0 64px; }
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--amber);
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-weight: 800;
+    font-size: clamp(2rem, 4.2vw, 3.1rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 22px;
+  }
+
+  h1 span { color: var(--amber); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    max-width: 46ch;
+    margin-bottom: 32px;
+  }
+
+  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    border-radius: 3px;
+    display: inline-block;
+    transition: all 0.15s ease;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: #14161A;
+    font-weight: 700;
+  }
+
+  .btn-primary:hover { background: #ffa564; }
+
+  .btn-secondary {
+    border: 1px solid var(--line);
+    color: var(--text);
+  }
+
+  .btn-secondary:hover { border-color: var(--steel); color: var(--steel); }
+
+  /* ---------- DIAGNOSTIC PANEL (signature element) ---------- */
+  .diagnostic {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 28px;
+    position: relative;
+  }
+
+  .diagnostic-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .diagnostic-label .live {
+    color: var(--amber);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .live::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--amber);
+    border-radius: 50%;
+    animation: pulse 1.6s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .stick-readout {
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 260px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .stick-readout svg { width: 100%; height: 100%; }
+
+  .readout-notes {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 18px;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    line-height: 1.7;
+  }
+
+  .readout-notes b { color: var(--text); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drift-dot, .live { animation: none !important; }
+  }
+
+  /* ---------- CLUSTERS ---------- */
+  .section {
+    padding: 72px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-head {
+    margin-bottom: 44px;
+  }
+
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .clusters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 880px) {
+    .clusters { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .clusters { grid-template-columns: 1fr; }
+  }
+
+  .cluster-card {
+    background: var(--panel);
+    padding: 28px 24px;
+    transition: background 0.15s ease;
+  }
+
+  .cluster-card:hover { background: var(--panel-raised); }
+
+  .cluster-num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--amber-dim);
+    margin-bottom: 14px;
+  }
+
+  .cluster-card h3 {
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .cluster-card p {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+  }
+
+  /* ---------- FEATURED ARTICLE ---------- */
+  .featured {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  @media (max-width: 720px) {
+    .featured { grid-template-columns: 1fr; }
+  }
+
+  .featured-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: rgba(255, 138, 61, 0.1);
+    border: 1px solid var(--amber-dim);
+    padding: 5px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+
+  .featured h3 {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+
+  .featured p {
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    max-width: 56ch;
+  }
+
+  .featured-icon {
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 720px) {
+    .featured-icon { display: none; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+    margin-top: 40px;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-row p {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .footer-links a:hover { color: var(--amber); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="index.html" class="logo"><span class="dot"></span>SHWEETMODS</a>
+      <div class="nav-links">
+        <a href="#repairs">Repairs</a>
+        <a href="#mods">Mods</a>
+        <a href="#buying-guides">Buying Guides</a>
+        <a href="#about">About</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Field-tested controller repair &amp; mods</div>
+        <h1>Your controller isn't<br>broken. It's <span>drifting</span>.</h1>
+        <p class="hero-sub">Honest, hands-on guides for fixing, modding, and buying gaming controllers — written by someone who actually opens them up. No filler, no "just buy a new one."</p>
+        <div class="btn-row">
+          <a href="articles/stick-drift-fix.html" class="btn btn-primary">Read the Stick Drift Guide</a>
+          <a href="#repairs" class="btn btn-secondary">Browse All Guides</a>
+        </div>
+      </div>
+
+      <div class="diagnostic">
+        <div class="diagnostic-label">
+          <span>READOUT // LEFT STICK</span>
+          <span class="live">LIVE</span>
+        </div>
+        <div class="stick-readout">
+          <svg viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="92" stroke="#32363F" stroke-width="1.5"/>
+            <circle cx="100" cy="100" r="60" stroke="#32363F" stroke-width="1" stroke-dasharray="3 4"/>
+            <line x1="100" y1="8" x2="100" y2="192" stroke="#32363F" stroke-width="1"/>
+            <line x1="8" y1="100" x2="192" y2="100" stroke="#32363F" stroke-width="1"/>
+            <circle class="drift-dot" cx="100" cy="100" r="7" fill="#FF8A3D">
+              <animate attributeName="cx" values="100;130;100;76;100" dur="4.2s" repeatCount="indefinite" />
+              <animate attributeName="cy" values="100;88;100;118;100" dur="4.2s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="100" cy="100" r="2" fill="#8A8F98"/>
+          </svg>
+        </div>
+        <div class="readout-notes">
+          <b>Status:</b> drift detected at idle &mdash; no input applied.<br>
+          <b>Likely cause:</b> dust contamination or potentiometer wear.<br>
+          <b>Est. fix cost:</b> $0&ndash;20, 20&ndash;40 min.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="repairs">
+      <div class="section-head">
+        <div class="section-eyebrow">Start here</div>
+        <h2>What we cover</h2>
+      </div>
+      <div class="clusters">
+        <div class="cluster-card">
+          <div class="cluster-num">01</div>
+          <h3>Stick Drift &amp; Repairs</h3>
+          <p>Why controllers drift, how to clean them, and when a $10 part beats a $70 replacement.</p>
+        </div>
+        <div class="cluster-card" id="mods">
+          <div class="cluster-num">02</div>
+          <h3>Performance Mods</h3>
+          <p>Rapid fire, trigger stops, paddles &mdash; what's actually worth installing, and what's marketing.</p>
+        </div>
+        <div class="cluster-card" id="buying-guides">
+          <div class="cluster-num">03</div>
+          <h3>Buying Guides</h3>
+          <p>Stock vs. modded comparisons and honest brand reviews, for specific games and budgets.</p>
+        </div>
+        <div class="cluster-card">
+          <div class="cluster-num">04</div>
+          <h3>Customization</h3>
+          <p>Shells, button kits, and builders worth your money &mdash; plus a few that aren't.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="section-eyebrow">Featured guide</div>
+        <h2>Latest from the bench</h2>
+      </div>
+      <div class="featured">
+        <svg class="featured-icon" viewBox="0 0 96 96" fill="none">
+          <circle cx="48" cy="48" r="44" stroke="#FF8A3D" stroke-width="2" opacity="0.4"/>
+          <circle cx="48" cy="48" r="28" stroke="#32363F" stroke-width="1.5"/>
+          <circle cx="58" cy="40" r="6" fill="#FF8A3D"/>
+          <line x1="48" y1="48" x2="58" y2="40" stroke="#FF8A3D" stroke-width="1.5"/>
+        </svg>
+        <div>
+          <span class="featured-tag">Repairs &middot; 7 min read</span>
+          <h3>Your Controller's Drifting Apart (Literally) — Here's How to Fix It</h3>
+          <p>A complete, no-nonsense walkthrough of why stick drift happens and the cheapest fix that actually works — starting at $0, before you ever consider replacing the whole controller.</p>
+          <a href="articles/stick-drift-fix.html" class="btn btn-secondary">Read the full guide &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <p>&copy; 2026 ShweetMods. Built by a controller enthusiast, not a corporation.</p>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#">Affiliate Disclosure</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
