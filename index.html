@@ -9,15 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #14161A;
-    --panel: #1E2128;
-    --panel-raised: #24272F;
-    --line: #32363F;
-    --amber: #FF8A3D;
-    --amber-dim: #B8602A;
-    --steel: #6E9FFF;
-    --text: #ECE9E2;
-    --text-dim: #8A8F98;
+    --bg: #2A2730;
+    --panel: #332F3D;
+    --panel-raised: #3C3847;
+    --line: #4A4558;
+    --amber: #B39DDB;
+    --amber-dim: #8B6FBB;
+    --steel: #7BA3D4;
+    --text: #EDE9F5;
+    --text-dim: #9B94AD;
     --mono: 'JetBrains Mono', monospace;
     --sans: 'Inter', sans-serif;
   }
@@ -157,11 +157,11 @@
 
   .btn-primary {
     background: var(--amber);
-    color: #14161A;
+    color: #2A2730;
     font-weight: 700;
   }
 
-  .btn-primary:hover { background: #ffa564; }
+  .btn-primary:hover { background: #C9B3E8; }
 
   .btn-secondary {
     border: 1px solid var(--line);
@@ -328,7 +328,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--amber);
-    background: rgba(255, 138, 61, 0.1);
+    background: rgba(179,157,219,0.12);
     border: 1px solid var(--amber-dim);
     padding: 5px 10px;
     border-radius: 3px;
@@ -428,15 +428,15 @@
         </div>
         <div class="stick-readout">
           <svg viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="92" stroke="#32363F" stroke-width="1.5"/>
-            <circle cx="100" cy="100" r="60" stroke="#32363F" stroke-width="1" stroke-dasharray="3 4"/>
-            <line x1="100" y1="8" x2="100" y2="192" stroke="#32363F" stroke-width="1"/>
-            <line x1="8" y1="100" x2="192" y2="100" stroke="#32363F" stroke-width="1"/>
-            <circle class="drift-dot" cx="100" cy="100" r="7" fill="#FF8A3D">
+            <circle cx="100" cy="100" r="92" stroke="#4A4558" stroke-width="1.5"/>
+            <circle cx="100" cy="100" r="60" stroke="#4A4558" stroke-width="1" stroke-dasharray="3 4"/>
+            <line x1="100" y1="8" x2="100" y2="192" stroke="#4A4558" stroke-width="1"/>
+            <line x1="8" y1="100" x2="192" y2="100" stroke="#4A4558" stroke-width="1"/>
+            <circle class="drift-dot" cx="100" cy="100" r="7" fill="#B39DDB">
               <animate attributeName="cx" values="100;130;100;76;100" dur="4.2s" repeatCount="indefinite" />
               <animate attributeName="cy" values="100;88;100;118;100" dur="4.2s" repeatCount="indefinite" />
             </circle>
-            <circle cx="100" cy="100" r="2" fill="#8A8F98"/>
+            <circle cx="100" cy="100" r="2" fill="#9B94AD"/>
           </svg>
         </div>
         <div class="readout-notes">
@@ -483,10 +483,10 @@
       </div>
       <div class="featured" style="margin-bottom:1px">
         <svg class="featured-icon" viewBox="0 0 96 96" fill="none">
-          <circle cx="48" cy="48" r="44" stroke="#FF8A3D" stroke-width="2" opacity="0.4"/>
-          <circle cx="48" cy="48" r="28" stroke="#32363F" stroke-width="1.5"/>
-          <circle cx="58" cy="40" r="6" fill="#FF8A3D"/>
-          <line x1="48" y1="48" x2="58" y2="40" stroke="#FF8A3D" stroke-width="1.5"/>
+          <circle cx="48" cy="48" r="44" stroke="#B39DDB" stroke-width="2" opacity="0.4"/>
+          <circle cx="48" cy="48" r="28" stroke="#4A4558" stroke-width="1.5"/>
+          <circle cx="58" cy="40" r="6" fill="#B39DDB"/>
+          <line x1="48" y1="48" x2="58" y2="40" stroke="#B39DDB" stroke-width="1.5"/>
         </svg>
         <div>
           <span class="featured-tag">Repairs &middot; 7 min read</span>
@@ -498,10 +498,10 @@
 
       <div class="featured" style="margin-top:1px">
         <svg class="featured-icon" viewBox="0 0 96 96" fill="none">
-          <rect x="8" y="28" width="80" height="48" rx="4" stroke="#FF8A3D" stroke-width="2" opacity="0.4"/>
-          <circle cx="32" cy="52" r="10" stroke="#FF8A3D" stroke-width="1.5"/>
-          <circle cx="64" cy="52" r="10" stroke="#32363F" stroke-width="1.5"/>
-          <line x1="32" y1="52" x2="64" y2="52" stroke="#32363F" stroke-width="1" stroke-dasharray="3 3"/>
+          <rect x="8" y="28" width="80" height="48" rx="4" stroke="#B39DDB" stroke-width="2" opacity="0.4"/>
+          <circle cx="32" cy="52" r="10" stroke="#B39DDB" stroke-width="1.5"/>
+          <circle cx="64" cy="52" r="10" stroke="#4A4558" stroke-width="1.5"/>
+          <line x1="32" y1="52" x2="64" y2="52" stroke="#4A4558" stroke-width="1" stroke-dasharray="3 3"/>
         </svg>
         <div>
           <span class="featured-tag">Buying Guide &middot; 15 min read</span>
@@ -513,11 +513,11 @@
 
       <div class="featured" style="margin-top:1px">
         <svg class="featured-icon" viewBox="0 0 96 96" fill="none">
-          <circle cx="48" cy="48" r="40" stroke="#32363F" stroke-width="1.5"/>
-          <path d="M32 48 Q48 24 64 48 Q48 72 32 48Z" stroke="#FF8A3D" stroke-width="1.5" fill="none" opacity="0.6"/>
-          <circle cx="48" cy="48" r="6" fill="#FF8A3D"/>
-          <line x1="48" y1="8" x2="48" y2="20" stroke="#32363F" stroke-width="1"/>
-          <line x1="48" y1="76" x2="48" y2="88" stroke="#32363F" stroke-width="1"/>
+          <circle cx="48" cy="48" r="40" stroke="#4A4558" stroke-width="1.5"/>
+          <path d="M32 48 Q48 24 64 48 Q48 72 32 48Z" stroke="#B39DDB" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <circle cx="48" cy="48" r="6" fill="#B39DDB"/>
+          <line x1="48" y1="8" x2="48" y2="20" stroke="#4A4558" stroke-width="1"/>
+          <line x1="48" y1="76" x2="48" y2="88" stroke="#4A4558" stroke-width="1"/>
         </svg>
         <div>
           <span class="featured-tag">Mods &middot; 12 min read</span>
