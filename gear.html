@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recommended Gear | ShweetMods</title>
+<meta name="description" content="Personally vetted controller gear, repair tools, and accessories. Everything on this page has been researched and recommended by ShweetMods — not paid to be here.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #2A2730;
+    --panel: #332F3D;
+    --panel-raised: #3C3847;
+    --line: #4A4558;
+    --lilac: #B39DDB;
+    --lilac-dim: #8B6FBB;
+    --lilac-light: rgba(179,157,219,0.12);
+    --steel: #7BA3D4;
+    --text: #EDE9F5;
+    --text-dim: #9B94AD;
+    --green: #86EFAC;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--steel); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  /* NAV */
+  header { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(42,39,48,0.95); backdrop-filter: blur(8px); z-index: 100; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { font-family: var(--mono); font-weight: 800; font-size: 1.05rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .logo .dot { width: 8px; height: 8px; background: var(--lilac); border-radius: 50%; box-shadow: 0 0 8px var(--lilac); }
+  .nav-links { display: flex; gap: 32px; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .nav-links a { color: var(--text-dim); }
+  .nav-links a:hover { color: var(--lilac); text-decoration: none; }
+  .nav-links a.active { color: var(--lilac); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* PAGE HEADER */
+  .page-header { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lilac); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--lilac); display: block; }
+  h1 { font-family: var(--mono); font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.15; margin-bottom: 16px; }
+  .page-sub { font-size: 1.02rem; color: var(--text-dim); max-width: 58ch; }
+
+  /* DISCLOSURE */
+  .disclosure-bar { background: var(--lilac-light); border: 1px solid var(--lilac-dim); border-radius: 4px; padding: 14px 20px; margin: 32px 0; font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); }
+  .disclosure-bar strong { color: var(--lilac); }
+
+  /* SECTIONS */
+  .gear-section { padding: 48px 0; border-top: 1px solid var(--line); }
+  .section-eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); margin-bottom: 8px; }
+  .section-title { font-family: var(--mono); font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+  .section-desc { font-size: 0.92rem; color: var(--text-dim); margin-bottom: 32px; max-width: 60ch; }
+
+  /* GEAR GRID */
+  .gear-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 720px) { .gear-grid { grid-template-columns: 1fr; } }
+  .gear-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 880px) { .gear-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .gear-grid-3 { grid-template-columns: 1fr; } }
+
+  /* GEAR CARD */
+  .gear-card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 12px; transition: background 0.15s; }
+  .gear-card:hover { background: var(--panel-raised); }
+  .gear-card-tag { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lilac); background: var(--lilac-light); border: 1px solid var(--lilac-dim); padding: 3px 9px; border-radius: 3px; display: inline-block; width: fit-content; }
+  .gear-card h3 { font-family: var(--mono); font-size: 1rem; font-weight: 700; line-height: 1.3; }
+  .gear-card p { font-size: 0.88rem; color: var(--text-dim); flex: 1; }
+  .gear-card-why { font-family: var(--mono); font-size: 0.75rem; color: var(--green); margin-top: 4px; }
+  .gear-btn { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 11px 20px; border-radius: 3px; background: var(--lilac); color: #1E1A2E; font-weight: 700; border: none; cursor: pointer; text-align: center; display: block; margin-top: auto; transition: background 0.15s; text-decoration: none; }
+  .gear-btn:hover { background: #C9B3E8; text-decoration: none; }
+
+  /* FEATURED CARD (full width) */
+  .gear-card-featured { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 32px; border-left: 3px solid var(--lilac-dim); }
+  @media (max-width: 720px) { .gear-card-featured { flex-direction: column; } }
+  .gear-card-featured .gear-card-body { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .gear-card-featured .gear-btn { width: fit-content; white-space: nowrap; }
+  .featured-badge { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(134,239,172,0.1); color: var(--green); border: 1px solid rgba(134,239,172,0.3); padding: 3px 9px; border-radius: 3px; display: inline-block; width: fit-content; }
+
+  /* CTA FOOTER */
+  .page-cta { padding: 56px 0; border-top: 1px solid var(--line); text-align: center; }
+  .page-cta h2 { font-family: var(--mono); font-size: 1.4rem; margin-bottom: 12px; }
+  .page-cta p { color: var(--text-dim); margin-bottom: 24px; }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-secondary { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 12px 22px; border-radius: 3px; border: 1px solid var(--line); color: var(--text); display: inline-block; transition: all 0.15s; }
+  .btn-secondary:hover { border-color: var(--steel); color: var(--steel); text-decoration: none; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--line); padding: 40px 0; }
+  .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-row p, .footer-links { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--text-dim); }
+  .footer-links a:hover { color: var(--lilac); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="index.html" class="logo"><span class="dot"></span>SHWEETMODS</a>
+      <div class="nav-links">
+        <a href="index.html#repairs">Repairs</a>
+        <a href="index.html#mods">Mods</a>
+        <a href="index.html#buying-guides">Buying Guides</a>
+        <a href="gear.html" class="active">Gear</a>
+        <a href="index.html#about">About</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="wrap">
+    <div class="eyebrow">Personally vetted picks</div>
+    <h1>Recommended Gear</h1>
+    <p class="page-sub">Everything on this page has been researched and stands behind the same standards as every article on ShweetMods. No random sponsorships, no filler products — just what we'd actually buy.</p>
+    <div class="disclosure-bar" style="margin-top:24px; margin-bottom:0">
+      <strong>Affiliate Disclosure:</strong> Some links on this page are Amazon affiliate links. If you buy something through one, we earn a small commission at no extra cost to you. It helps keep the site running and the guides free.
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+
+    <!-- REPAIR ESSENTIALS -->
+    <section class="gear-section" id="repair">
+      <div class="section-eyebrow">For the fixer</div>
+      <div class="section-title">Repair Essentials</div>
+      <p class="section-desc">Everything you need to diagnose and fix stick drift before spending a dime on a new controller. Start here.</p>
+      <div class="gear-grid gear-grid-3">
+
+        <div class="gear-card">
+          <span class="gear-card-tag">Fix 01 — Free</span>
+          <h3>Compressed Air Duster</h3>
+          <p>The first thing to try before anything else. Blasting dust out of the stick mechanism fixes a surprising number of drift cases instantly — and it costs less than a coffee.</p>
+          <div class="gear-card-why">→ First step in any drift diagnosis</div>
+          <a href="https://amzn.to/4eSNttI" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+        <div class="gear-card">
+          <span class="gear-card-tag">Fix 02 — Xbox</span>
+          <h3>Xbox Thumbstick Replacement Module</h3>
+          <p>When cleaning doesn't cut it, the sensor itself is worn out. These replacement modules fit Xbox Series X/S and One controllers and cost a fraction of a new pad.</p>
+          <div class="gear-card-why">→ Fixes worn potentiometer drift for good</div>
+          <a href="https://amzn.to/4eQOROV" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+        <div class="gear-card">
+          <span class="gear-card-tag">Fix 02 — PS5</span>
+          <h3>PS5 DualSense Thumbstick Module</h3>
+          <p>Same fix for PlayStation players. Replacement stick modules for the DualSense are widely available and genuinely straightforward to install with the right screwdriver.</p>
+          <div class="gear-card-why">→ The $15 fix that saves a $75 controller</div>
+          <a href="https://amzn.to/4eHOyWz" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+        <div class="gear-card gear-grid" style="grid-column: 1 / -1; display:flex; flex-direction:row; gap:32px; align-items:center; border-left: 3px solid var(--lilac-dim);">
+          <div style="flex:1">
+            <span class="gear-card-tag">Essential Tool</span>
+            <h3 style="margin-top:10px; font-family: var(--mono); font-size:1rem; font-weight:700;">Precision Screwdriver Kit</h3>
+            <p style="margin-top:8px; font-size:0.88rem; color:var(--text-dim);">You cannot open a controller without one. A quality precision set handles every screw type across Xbox, PlayStation, and third-party controllers. Buy once, use on everything.</p>
+            <div class="gear-card-why" style="margin-top:8px;">→ Required for any internal repair or mod</div>
+          </div>
+          <a href="https://amzn.to/4vfQI4B" target="_blank" class="gear-btn" style="white-space:nowrap; width:fit-content; height:fit-content;">View on Amazon →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTROLLERS -->
+    <section class="gear-section" id="controllers">
+      <div class="section-eyebrow">For the upgrade</div>
+      <div class="section-title">Controllers Worth Buying</div>
+      <p class="section-desc">Three picks across different budgets and use cases. Each one has earned its place here — see the <a href="articles/controller-fit-guide.html">full fit guide</a> for a complete breakdown of who each one is built for.</p>
+      <div class="gear-grid">
+
+        <div class="gear-card gear-card-featured">
+          <div class="gear-card-body">
+            <span class="featured-badge">Best Value Pick</span>
+            <h3>GameSir G7 Pro</h3>
+            <p>The controller most buying guides skip because it doesn't have the Scuf or Razer logo. Hall effect TMR sticks, back buttons, trigger locks, and deep remapping — all for around $70. You're not settling. You're just not paying for a badge.</p>
+            <div class="gear-card-why">→ Hall effect sticks, drift-free by design, competitive features at budget price</div>
+          </div>
+          <a href="https://amzn.to/4v8iksc" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+        <div class="gear-card">
+          <span class="gear-card-tag">Premium Pick</span>
+          <h3>Xbox Elite Series 2</h3>
+          <p>Four back paddles, adjustable trigger tension, swappable stick caps, and adjustable weight. The most customizable stock controller on the market. Best for competitive FPS players who want everything in one box.</p>
+          <div class="gear-card-why">→ Best-in-class paddle system, deep customization</div>
+          <a href="https://amzn.to/4fepMxk" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+        <div class="gear-card">
+          <span class="gear-card-tag">Competitive Pick</span>
+          <h3>Scuf Envision Pro</h3>
+          <p>Scuf's PC-focused flagship with four remappable back paddles, adjustable hair triggers, and interchangeable thumbsticks. Built for players who want pro-level inputs without waiting on a custom order.</p>
+          <div class="gear-card-why">→ Pro-grade paddles, hair triggers, PC optimized</div>
+          <a href="https://amzn.to/4eGcdGN" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GRIP & ACCESSORIES -->
+    <section class="gear-section" id="accessories">
+      <div class="section-eyebrow">For the grip</div>
+      <div class="section-title">Grip &amp; Accessories</div>
+      <p class="section-desc">The most underrated category in controller upgrades. Both picks here cost under $20 and make an immediate, noticeable difference in how your controller feels during long sessions.</p>
+      <div class="gear-grid">
+
+        <div class="gear-card">
+          <span class="gear-card-tag">Performance Thumbsticks</span>
+          <h3>KontrolFreek Performance Thumbsticks</h3>
+          <p>Taller sticks give you more angular range of motion for the same physical movement, which translates directly to finer aim precision. Available in multiple heights and profiles for different playstyles and hand sizes.</p>
+          <div class="gear-card-why">→ More precision per movement, reduces overshot inputs</div>
+          <a href="https://amzn.to/4p5s45o" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+        <div class="gear-card">
+          <span class="gear-card-tag">Grip Kit</span>
+          <h3>Satisfye Grip Kit</h3>
+          <p>If your hands warm up during long sessions — and most do — a smooth controller becomes a liability at exactly the wrong moment. The Satisfye grip kit adds textured coverage where it counts, keeping the controller locked in regardless of session length.</p>
+          <div class="gear-card-why">→ Eliminates slip during intense sessions, under $15</div>
+          <a href="https://amzn.to/44H0t0H" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PERFORMANCE MODS -->
+    <section class="gear-section" id="mods">
+      <div class="section-eyebrow">For the edge</div>
+      <div class="section-title">Performance Mods</div>
+      <p class="section-desc">Targeted hardware upgrades that address specific limitations. Read the <a href="articles/mods-style-vs-skill.html">Style vs Skill guide</a> first if you're not sure whether these are right for your playstyle.</p>
+      <div class="gear-grid">
+
+        <div class="gear-card">
+          <span class="gear-card-tag">Xbox — Trigger Mod</span>
+          <h3>Xbox Trigger Stop Kit</h3>
+          <p>Reduces trigger travel from 6–8mm down to 1–2mm, meaning the gap between deciding to shoot and the shot firing shrinks dramatically. Genuine competitive advantage in fast time-to-kill games like Call of Duty.</p>
+          <div class="gear-card-why">→ Faster trigger response, no software required</div>
+          <a href="https://amzn.to/4gkjBJ5" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+        <div class="gear-card">
+          <span class="gear-card-tag">PS5 — Trigger Mod</span>
+          <h3>PS5 Trigger Stop Kit</h3>
+          <p>Same mechanical advantage for PlayStation players. Works with the DualSense trigger mechanism to cut dead travel and speed up actuation. Easy to install, immediately noticeable in competitive play.</p>
+          <div class="gear-card-why">→ PS5 compatible, same speed advantage as Xbox version</div>
+          <a href="https://amzn.to/3SIM1CL" target="_blank" class="gear-btn">View on Amazon →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA -->
+    <div class="page-cta">
+      <h2>Want to go deeper?</h2>
+      <p>Every product here has a full breakdown in one of our guides. Start with the one that matches where you're at.</p>
+      <div class="cta-row">
+        <a href="articles/stick-drift-fix.html" class="btn-secondary">Fix Your Drift →</a>
+        <a href="articles/controller-fit-guide.html" class="btn-secondary">Find Your Controller →</a>
+        <a href="articles/mods-style-vs-skill.html" class="btn-secondary">Style vs Skill Guide →</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <p>&copy; 2026 ShweetMods. Built by a controller enthusiast, not a corporation.</p>
+      <div class="footer-links">
+        <a href="index.html#about">About</a>
+        <a href="#">Affiliate Disclosure</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
