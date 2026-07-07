@@ -102,7 +102,7 @@
         <h2>Request an Article</h2>
         <p>Got a controller topic you want us to dig into? Drop it here. The most requested topics get turned into full guides.</p>
 
-        <form id="requestForm" action="https://formspree.io/f/YOURFORMID" method="POST">
+        <form id="requestForm" action="https://formspree.io/f/xjgqdglb" method="POST">
           <div class="field">
             <label>Your Name</label>
             <input type="text" name="name" placeholder="ShweetFan123" required>
@@ -199,7 +199,7 @@
   document.getElementById('requestForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const form = this;
-    fetch(form.action, {
+    fetch('https://formspree.io/f/xjgqdglb', {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
@@ -207,7 +207,11 @@
       if (r.ok) {
         form.reset();
         document.getElementById('successMsg').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
       }
+    }).catch(() => {
+      alert('Something went wrong. Please try again.');
     });
   });
 </script>
