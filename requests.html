@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Requests | ShweetMods</title>
+<meta name="description" content="Request an article, ask a question, or just tell us a bit about yourself. ShweetMods reads every submission.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #2A2730; --panel: #332F3D; --panel-raised: #3C3847; --line: #4A4558;
+    --lilac: #B39DDB; --lilac-dim: #8B6FBB; --lilac-light: rgba(179,157,219,0.12);
+    --steel: #7BA3D4; --text: #EDE9F5; --text-dim: #9B94AD; --green: #86EFAC;
+    --mono: 'JetBrains Mono', monospace; --sans: 'Inter', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--steel); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  .content-wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+  header { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(42,39,48,0.95); backdrop-filter: blur(8px); z-index: 100; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { font-family: var(--mono); font-weight: 800; font-size: 1.05rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .logo .dot { width: 8px; height: 8px; background: var(--lilac); border-radius: 50%; box-shadow: 0 0 8px var(--lilac); }
+  .nav-links { display: flex; gap: 32px; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .nav-links a { color: var(--text-dim); }
+  .nav-links a:hover { color: var(--lilac); text-decoration: none; }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+  .page-header { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lilac); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--lilac); display: block; }
+  h1 { font-family: var(--mono); font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.15; margin-bottom: 16px; }
+  .page-sub { font-size: 1.02rem; color: var(--text-dim); max-width: 58ch; }
+  .forms-wrap { padding: 48px 0 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 720px) { .forms-wrap { grid-template-columns: 1fr; } }
+  .form-card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 32px; }
+  .form-card-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); margin-bottom: 10px; }
+  .form-card h2 { font-family: var(--mono); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+  .form-card p { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 24px; }
+  .field { margin-bottom: 16px; }
+  .field label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 8px; }
+  .field input, .field textarea, .field select {
+    width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 4px;
+    padding: 12px 14px; color: var(--text); font-family: var(--sans); font-size: 0.92rem;
+    outline: none; transition: border-color 0.15s;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--lilac); }
+  .field textarea { resize: vertical; min-height: 100px; }
+  .field select option { background: var(--panel); }
+  .submit-btn {
+    width: 100%; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em;
+    text-transform: uppercase; padding: 14px; border-radius: 3px; background: var(--lilac);
+    color: #1E1A2E; font-weight: 700; border: none; cursor: pointer; transition: background 0.15s;
+    margin-top: 8px;
+  }
+  .submit-btn:hover { background: #C9B3E8; }
+  .divider { border: none; border-top: 1px solid var(--line); margin: 20px 0; }
+  .fun-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lilac); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .fun-label::before { content: ''; width: 16px; height: 1px; background: var(--lilac); display: block; }
+  .success-msg { display: none; background: rgba(134,239,172,0.1); border: 1px solid rgba(134,239,172,0.3); border-radius: 4px; padding: 16px; font-family: var(--mono); font-size: 0.82rem; color: var(--green); margin-top: 16px; text-align: center; }
+  footer { border-top: 1px solid var(--line); padding: 40px 0; }
+  .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-row p, .footer-links { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--text-dim); }
+  .footer-links a:hover { color: var(--lilac); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="index.html" class="logo"><span class="dot"></span>SHWEETMODS</a>
+      <div class="nav-links">
+        <a href="index.html#repairs">Repairs</a>
+        <a href="index.html#mods">Mods</a>
+        <a href="index.html#buying-guides">Buying Guides</a>
+        <a href="gear.html">Gear</a>
+        <a href="index.html#about">About</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="content-wrap">
+    <div class="eyebrow">Talk to us</div>
+    <h1>Requests &amp; Community</h1>
+    <p class="page-sub">Got a topic you want covered? A question that keeps you up at night? Or just want to tell us what you're playing? We read everything.</p>
+  </div>
+</div>
+
+<main>
+  <div class="content-wrap">
+    <div class="forms-wrap">
+
+      <!-- ARTICLE REQUEST FORM -->
+      <div class="form-card">
+        <div class="form-card-label">Submit a request</div>
+        <h2>Request an Article</h2>
+        <p>Got a controller topic you want us to dig into? Drop it here. The most requested topics get turned into full guides.</p>
+
+        <form id="requestForm" action="https://formspree.io/f/YOURFORMID" method="POST">
+          <div class="field">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="ShweetFan123" required>
+          </div>
+          <div class="field">
+            <label>Email (optional — only if you want a reply)</label>
+            <input type="email" name="email" placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label>What topic do you want covered?</label>
+            <textarea name="topic" placeholder="e.g. Best controllers for fighting games under $100, how to fix bumper buttons, hall effect vs potentiometer deep dive..." required></textarea>
+          </div>
+          <div class="field">
+            <label>Why do you want this covered?</label>
+            <textarea name="reason" placeholder="The more context the better — helps us write something actually useful." style="min-height:80px;"></textarea>
+          </div>
+
+          <hr class="divider">
+          <div class="fun-label">Tell us a bit about yourself</div>
+
+          <div class="field">
+            <label>Favorite Anime</label>
+            <input type="text" name="anime" placeholder="Don't say you don't watch anime...">
+          </div>
+          <div class="field">
+            <label>What game do you have the most hours in?</label>
+            <input type="text" name="most_played" placeholder="Be honest.">
+          </div>
+          <div class="field">
+            <label>Your highest competitive rank (any game)</label>
+            <input type="text" name="rank" placeholder="Diamond, Plat, Radiant, Champion...">
+          </div>
+          <div class="field">
+            <label>Platform you main</label>
+            <select name="platform">
+              <option value="" disabled selected>Select your platform</option>
+              <option value="xbox">Xbox</option>
+              <option value="playstation">PlayStation</option>
+              <option value="pc">PC</option>
+              <option value="multi">Multi-platform</option>
+              <option value="nintendo">Nintendo</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Current controller setup</label>
+            <input type="text" name="controller" placeholder="Stock Xbox Elite S2, custom ModdedZone build...">
+          </div>
+
+          <button type="submit" class="submit-btn">Submit Request →</button>
+          <div class="success-msg" id="successMsg">Request received. We read every single one.</div>
+        </form>
+      </div>
+
+      <!-- FAQ SHORTCUT + INFO CARD -->
+      <div>
+        <div class="form-card" style="margin-bottom: 16px;">
+          <div class="form-card-label">Before you submit</div>
+          <h2>Already Covered?</h2>
+          <p>Check the FAQ and existing articles first — your question might already be answered.</p>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
+            <a href="faq.html" style="font-family:var(--mono); font-size:0.78rem; letter-spacing:0.04em; text-transform:uppercase; padding:12px 18px; border-radius:3px; border:1px solid var(--line); color:var(--text); display:block; text-align:center; transition:all 0.15s;" onmouseover="this.style.borderColor='var(--lilac)'; this.style.color='var(--lilac)'" onmouseout="this.style.borderColor='var(--line)'; this.style.color='var(--text)'">Browse the FAQ →</a>
+            <a href="articles/stick-drift-fix.html" style="font-family:var(--mono); font-size:0.78rem; letter-spacing:0.04em; text-transform:uppercase; padding:12px 18px; border-radius:3px; border:1px solid var(--line); color:var(--text); display:block; text-align:center; transition:all 0.15s;" onmouseover="this.style.borderColor='var(--lilac)'; this.style.color='var(--lilac)'" onmouseout="this.style.borderColor='var(--line)'; this.style.color='var(--text)'">Stick Drift Guide →</a>
+            <a href="articles/controller-fit-guide.html" style="font-family:var(--mono); font-size:0.78rem; letter-spacing:0.04em; text-transform:uppercase; padding:12px 18px; border-radius:3px; border:1px solid var(--line); color:var(--text); display:block; text-align:center; transition:all 0.15s;" onmouseover="this.style.borderColor='var(--lilac)'; this.style.color='var(--lilac)'" onmouseout="this.style.borderColor='var(--line)'; this.style.color='var(--text)'">Controller Fit Guide →</a>
+            <a href="articles/mods-style-vs-skill.html" style="font-family:var(--mono); font-size:0.78rem; letter-spacing:0.04em; text-transform:uppercase; padding:12px 18px; border-radius:3px; border:1px solid var(--line); color:var(--text); display:block; text-align:center; transition:all 0.15s;" onmouseover="this.style.borderColor='var(--lilac)'; this.style.color='var(--lilac)'" onmouseout="this.style.borderColor='var(--line)'; this.style.color='var(--text)'">Style vs Skill Guide →</a>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-card-label">How it works</div>
+          <h2>What Happens Next</h2>
+          <p style="margin-bottom:14px;">Every submission gets read. Topics that come up repeatedly get moved to the top of the writing queue. Topics that are genuinely niche and interesting get covered even if only one person asked — that's kind of the whole point of this site.</p>
+          <p>The Gen Z questions are just for fun — and also low-key market research so we know what our audience is actually playing and watching. No data is sold or shared anywhere.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <p>&copy; 2026 ShweetMods. Built by a controller enthusiast, not a corporation.</p>
+      <div class="footer-links">
+        <a href="faq.html">FAQ</a>
+        <a href="disclosure.html">Affiliate Disclosure</a>
+        <a href="requests.html">Requests</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('requestForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(r => {
+      if (r.ok) {
+        form.reset();
+        document.getElementById('successMsg').style.display = 'block';
+      }
+    });
+  });
+</script>
+</body>
+</html>
