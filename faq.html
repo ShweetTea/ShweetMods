@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ | ShweetMods</title>
+<meta name="description" content="Frequently asked questions about controllers, mods, stick drift, and ShweetMods.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #2A2730; --panel: #332F3D; --panel-raised: #3C3847; --line: #4A4558;
+    --lilac: #B39DDB; --lilac-dim: #8B6FBB; --lilac-light: rgba(179,157,219,0.12);
+    --steel: #7BA3D4; --text: #EDE9F5; --text-dim: #9B94AD;
+    --mono: 'JetBrains Mono', monospace; --sans: 'Inter', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--steel); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  .content-wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+  header { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(42,39,48,0.95); backdrop-filter: blur(8px); z-index: 100; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { font-family: var(--mono); font-weight: 800; font-size: 1.05rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .logo .dot { width: 8px; height: 8px; background: var(--lilac); border-radius: 50%; box-shadow: 0 0 8px var(--lilac); }
+  .nav-links { display: flex; gap: 32px; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .nav-links a { color: var(--text-dim); }
+  .nav-links a:hover { color: var(--lilac); text-decoration: none; }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+  .page-header { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lilac); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--lilac); display: block; }
+  h1 { font-family: var(--mono); font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.15; margin-bottom: 16px; }
+  .page-sub { font-size: 1.02rem; color: var(--text-dim); max-width: 58ch; }
+  .faq-section { padding: 48px 0; border-top: 1px solid var(--line); }
+  .section-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); margin-bottom: 24px; }
+  .faq-item { border: 1px solid var(--line); border-radius: 6px; margin-bottom: 10px; overflow: hidden; }
+  .faq-question { width: 100%; background: var(--panel); border: none; padding: 20px 24px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: background 0.15s; }
+  .faq-question:hover { background: var(--panel-raised); }
+  .faq-question span { font-family: var(--mono); font-size: 0.95rem; font-weight: 700; color: var(--text); }
+  .faq-icon { font-family: var(--mono); font-size: 1.2rem; color: var(--lilac); flex-shrink: 0; transition: transform 0.2s; }
+  .faq-answer { background: var(--panel); border-top: 1px solid var(--line); padding: 0 24px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+  .faq-answer.open { max-height: 400px; padding: 20px 24px; }
+  .faq-answer p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; }
+  .faq-answer a { color: var(--lilac); }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .page-cta { padding: 48px 0; border-top: 1px solid var(--line); text-align: center; }
+  .page-cta h2 { font-family: var(--mono); font-size: 1.2rem; margin-bottom: 12px; }
+  .page-cta p { color: var(--text-dim); margin-bottom: 24px; font-size: 0.95rem; }
+  .btn-primary { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 12px 24px; border-radius: 3px; background: var(--lilac); color: #1E1A2E; font-weight: 700; display: inline-block; text-decoration: none; transition: background 0.15s; }
+  .btn-primary:hover { background: #C9B3E8; text-decoration: none; }
+  footer { border-top: 1px solid var(--line); padding: 40px 0; margin-top: 40px; }
+  .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-row p, .footer-links { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--text-dim); }
+  .footer-links a:hover { color: var(--lilac); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="index.html" class="logo"><span class="dot"></span>SHWEETMODS</a>
+      <div class="nav-links">
+        <a href="index.html#repairs">Repairs</a>
+        <a href="index.html#mods">Mods</a>
+        <a href="index.html#buying-guides">Buying Guides</a>
+        <a href="gear.html">Gear</a>
+        <a href="index.html#about">About</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="content-wrap">
+    <div class="eyebrow">Got questions</div>
+    <h1>Frequently Asked Questions</h1>
+    <p class="page-sub">Everything you were wondering but didn't know who to ask. If your question isn't here, submit it on the <a href="requests.html">requests page</a> and we'll cover it.</p>
+  </div>
+</div>
+
+<main>
+  <div class="content-wrap">
+
+    <div class="faq-section">
+      <div class="section-label">Controller Basics</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>What is stick drift and why does it happen?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Stick drift is when your controller registers stick movement even when you're not touching it. It happens because the analog stick uses a physical sensor called a potentiometer that wears down over time through normal use. As the contacts degrade, they start sending incorrect position signals, making your character move, your camera spin, or your cursor drift on its own. Dust buildup around the sensor can cause the same effect. The full breakdown is in our <a href="articles/stick-drift-fix.html">stick drift guide</a>.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>Will cleaning my controller actually fix stick drift?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Sometimes yes, sometimes no — and it depends entirely on the cause. If dust or debris is interfering with the sensor, compressed air and isopropyl alcohol can absolutely fix it. If the potentiometer itself is physically worn out, no amount of cleaning will help and you'll need to replace the module. We always recommend starting with the free fixes before spending anything, since a surprising number of drift cases are dust-related rather than hardware failure.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>How do I know if my controller has Hall effect sticks?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>The easiest way is to check the product specs on the manufacturer's website or the retailer listing — Hall effect or TMR sticks are a selling point brands advertise prominently. As a general rule, most stock first-party controllers (Xbox Wireless, DualSense) do not have Hall effect sticks. Controllers like the GameSir G7 Pro, Razer Wolverine V3 Pro, and select third-party controllers do. If the listing doesn't mention it, assume it's a standard potentiometer-based stick.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>What's the difference between a modded controller and a stock controller?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>A stock controller is exactly what comes out of the box from the manufacturer — no alterations, no additions. A modded controller has been physically modified with additional hardware or cosmetic changes, such as back paddles, trigger stops, custom shells, rapid fire chips, or Hall effect stick replacements. Mods can be installed by the manufacturer (like Scuf or ModdedZone), bought pre-modded, or done yourself. The key distinction is that mods change what the controller physically does or looks like beyond the original design.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>Can I use a PlayStation controller on Xbox or PC, and vice versa?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>On PC, both Xbox and PlayStation controllers work natively — Xbox controllers connect easily via USB or wireless, and the DualSense is recognized by most modern games through Steam or with a free driver. Cross-platform on consoles is trickier. PlayStation controllers won't work on Xbox and vice versa without a third-party adapter. For PC gaming specifically, both are solid choices and the platform choice comes down to personal preference rather than compatibility concerns.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <div class="section-label">Mods &amp; Legal</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>Will a modded controller get me banned online?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>It depends entirely on the mod. Back paddles, trigger stops, custom shells, and grip tape are universally considered fine — they're physical ergonomic upgrades that don't automate any in-game actions. Where it gets complicated is mods like rapid fire and anti-recoil chips, which automate inputs that the game expects a human to perform manually. Most competitive titles and tournament organizers explicitly ban these. Cosmetic and ergonomic mods are safe. Automation mods are risky, especially in ranked play.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>Is modding my controller legal?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Modifying hardware you own is legal in most countries — there's no law against opening your controller and adding paddles or replacing parts. The legal gray area is when mods violate a game's terms of service, which is a contractual issue rather than a criminal one. The consequence there is a ban from that specific game or platform, not any legal trouble. Bottom line: modding your controller is legal. Using certain mods in online games may violate terms of service and result in a ban from those games.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>Do back paddles actually make you better or is it a placebo?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Back paddles are genuinely one of the most impactful mechanical upgrades you can make — but they have a real learning curve that makes people doubt them early on. The benefit is simple: your thumbs stay on the sticks when you jump, reload, or crouch. That's not placebo, that's removing a physical limitation. The catch is it takes one to two weeks before the new muscle memory feels natural. Most people who push through that adjustment period never go back to a standard layout. Those who judge it in the first session usually write it off too early.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>What mods are considered cheating in competitive play?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>The line is generally drawn at automation. Mods that automate inputs — rapid fire, anti-recoil chips, auto-aim scripts — are widely considered cheating by the competitive community and are banned in most organized tournaments. Mods that improve ergonomics or reduce mechanical limitations without automating anything — back paddles, trigger stops, grip tape, Hall effect sticks — are universally accepted and used by many pro players openly. If a mod does something for you that the game expects you to do manually, it's in cheating territory.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>Can I mod my controller myself or do I need a professional?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Depends on the mod. Grip tape and thumbstick caps require zero tools and anyone can do them in minutes. Cleaning for stick drift requires opening the controller, which needs a precision screwdriver and some patience but is well within reach for a first-timer with a guide. Replacing internal modules like thumbstick sensors is moderately technical but very doable with the right kit and a tutorial. Installing back paddles or rapid fire chips is where it gets more complex — at that point a service like ModdedZone is worth considering unless you're comfortable with soldering and have done it before.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <div class="section-label">ShweetMods</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>How do you choose which products to recommend?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Answer coming soon — check back shortly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>Do you get paid to recommend certain controllers?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Answer coming soon — check back shortly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>How often are articles updated?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Answer coming soon — check back shortly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          <span>Can I suggest a topic for a future article?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely — that's exactly what the <a href="requests.html">requests page</a> is for. Drop your topic idea there and we read every submission.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-cta">
+      <h2>Still have a question?</h2>
+      <p>Submit it on the requests page and we'll either answer it directly or turn it into a full article.</p>
+      <a href="requests.html" class="btn-primary">Submit a Question →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <p>&copy; 2026 ShweetMods. Built by a controller enthusiast, not a corporation.</p>
+      <div class="footer-links">
+        <a href="faq.html">FAQ</a>
+        <a href="disclosure.html">Affiliate Disclosure</a>
+        <a href="requests.html">Requests</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-answer').classList.remove('open');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+</script>
+</body>
+</html>
